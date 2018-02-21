@@ -41,6 +41,10 @@ describe NhtsaVin::Validation do
         expect(NhtsaVin::Validation.new(' 4T1BD1FK5CU061770  ').valid?)
           .to be true
       end
+      it 'converts to uppercase' do
+        expect(NhtsaVin::Validation.new('4t1bd1fk5cu061770').valid?)
+          .to be true
+      end
       it 'validates BMW VINs' do
         expect(NhtsaVin::Validation.new('WBAEV534X2KM16113').valid?)
           .to be true

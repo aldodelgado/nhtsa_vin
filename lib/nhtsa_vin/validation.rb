@@ -21,7 +21,7 @@ module NhtsaVin
         @error = 'Blank VIN provided'
         return
       end
-      @vin = vin.strip
+      @vin = vin.strip.upcase
       if !regex
         @error = 'Invalid VIN format'
         return

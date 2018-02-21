@@ -9,7 +9,7 @@ module NhtsaVin
     attr_reader :vin, :url, :response, :data, :error, :error_code, :raw_response
 
     def initialize(vin, options={})
-      @vin = vin
+      @vin = vin.strip.upcase
       @http_options = options[:http] || {}
       build_url
     end
