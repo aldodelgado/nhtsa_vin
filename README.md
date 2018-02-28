@@ -7,14 +7,14 @@
 
 A ruby gem for fetching and parsing vehicle identification via the vehicle identification number (VIN) from the [NHTSA webservice](https://vpic.nhtsa.dot.gov/api/Home). Note, this gem is not officially affiliated with the NHTSA.
 
-Please note, this gem is currently in early development. 
+Please note, this gem is currently in early development.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'nhsta_vin'
+gem 'nhtsa_vin'
 ```
 
 And then execute:
@@ -23,9 +23,9 @@ And then execute:
 
 Or install it yourself as:
 
-    gem install nhsta_vin
+    gem install nhtsa_vin
 
-## Usage 
+## Usage
 
 Validation
 ----
@@ -65,7 +65,7 @@ The actual data from the web service is contained in the `response` method. This
 query.response # => <Struct::NhtsaResponse make="Jeep", model="Grand Cherokee", trim="Laredo/Rocky Mountain Edition", type="SUV", year="2008", size=nil, ... doors=4>
 ```
 
-They query object also contains helper methods for error handling. For example, in the result no match is found, the result will be `nil`, and `#valid?` will return `false`. 
+They query object also contains helper methods for error handling. For example, in the result no match is found, the result will be `nil`, and `#valid?` will return `false`.
 
 ```ruby
 query = NhtsaVin.get('SOME_BAD_VIN') # => <NhtsaVin::Query>
@@ -78,7 +78,7 @@ query.error # => "11- Incorrect Model Year, decoded data may not be accurate"
 Vehicle Types
 ----
 
-For brevity, we're reducing the `Vehicle Type` response to an enumerated set of `["Car", "Truck", "Van", "SUV", "Minivan"]`. We're doing a rough parse of the type and body style to achieve this. It's probably not perfect. 
+For brevity, we're reducing the `Vehicle Type` response to an enumerated set of `["Car", "Truck", "Van", "SUV", "Minivan"]`. We're doing a rough parse of the type and body style to achieve this. It's probably not perfect.
 
 
 ## License
