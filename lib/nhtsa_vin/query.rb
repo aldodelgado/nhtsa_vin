@@ -101,11 +101,7 @@ module NhtsaVin
           @valid = false
 
           url = URI.parse(@url)
-          Net::HTTP.start(url.host, url.port, use_ssl: (url.scheme == 'https')) do |http|
-            @http_options.each do |key, val|
-              http.send("#{key}=", val) if val
-            end
-
+          Net::HTTP.start(url.host, url.port, { use_ssl: (url.scheme == 'https') }.merge(@http_options)) do |http|
             resp = http.request_get(url)
             case resp
             when Net::HTTPSuccess
