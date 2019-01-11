@@ -16,9 +16,9 @@ module NhtsaVin
 
     def get
       @raw_response = fetch
-      return if @raw_response.nil?
       begin
-        parse(JSON.parse(@raw_response))
+        return if @raw_response.nil? || (json_response = JSON.parse(@raw_response)).nil?
+        parse(json_response)
       rescue JSON::ParserError
         @valid = false
         @error = 'Response is not valid JSON'
