@@ -22,6 +22,8 @@ module NhtsaVin
       rescue JSON::ParserError
         @valid = false
         @error = 'Response is not valid JSON'
+      rescue => ex
+        raise "#{ex.message}: #{@raw_response.inspect}"
       end
     end
 
