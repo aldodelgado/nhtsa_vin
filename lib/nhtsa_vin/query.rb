@@ -32,6 +32,11 @@ module NhtsaVin
     end
 
     def parse(json)
+      if json['Message']&.match /execution error/i
+        @valid = false
+        @error = json.dig('Results', 0, 'Message')
+        return
+      end
       @data = json['Results']
 
       # 0 - Good

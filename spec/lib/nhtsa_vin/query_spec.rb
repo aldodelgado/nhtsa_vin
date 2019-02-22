@@ -78,6 +78,16 @@ describe NhtsaVin::Query do
         expect(client.error).to eq 'Response is not valid JSON'
       end
     end
+    context 'timeout response' do
+      before do
+        allow(client).to receive(:fetch).and_return('{"Count":0,"Message":"Execution Error","SearchCriteria":null,"Results":[{"Message":"Error encountered retrieving data: Connection Timeout Expired.  The timeout period elapsed while attempting to consume the pre-login handshake acknowledgement.  This could be because the pre-login handshake failed or the server was unable to respond back in time.  The duration spent while attempting to connect to this server was - [Pre-Login] initialization=6; handshake=14988; "}]}')
+        client.get
+      end
+      it 'is not valid' do
+        expect(client).not_to be_valid
+        expect(client.error).to match /connection timeout expired/i
+      end
+    end
     context 'HTTP error' do
       it '5xx' do
         resp = Net::HTTPServerError.new(1.1, 503, 'Service unhappy')
