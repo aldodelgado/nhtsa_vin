@@ -85,7 +85,7 @@ describe NhtsaVin::Query do
       end
       it 'is not valid' do
         expect(client).not_to be_valid
-        expect(client.error).to match /connection timeout expired/i
+        expect(client.error).to match(/connection timeout expired/i)
       end
     end
     context 'HTTP error' do

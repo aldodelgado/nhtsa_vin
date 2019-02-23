@@ -22,7 +22,7 @@ module NhtsaVin
       rescue JSON::ParserError
         @valid = false
         @error = 'Response is not valid JSON'
-      rescue => ex
+      rescue StandardError => ex
         raise "#{ex.message}: #{@raw_response.inspect}"
       end
     end
@@ -32,7 +32,7 @@ module NhtsaVin
     end
 
     def parse(json)
-      if json['Message']&.match /execution error/i
+      if json['Message']&.match(/execution error/i)
         @valid = false
         @error = json.dig('Results', 0, 'Message')
         return
