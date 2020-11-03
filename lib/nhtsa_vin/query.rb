@@ -54,7 +54,7 @@ module NhtsaVin
       end
       return nil unless valid?
 
-      make = value_for('Make').capitalize
+      make = value_for('Make')&.capitalize
       model = value_for('Model')
       trim = value_for('Trim')
       year = value_for('Model Year')
