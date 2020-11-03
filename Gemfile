@@ -6,4 +6,5 @@ group :test, :development do
   gem 'simplecov-json', require: false
 end
 
+gem 'rspec'
 gemspec
