@@ -42,7 +42,7 @@ module NhtsaVin
       @error_code = value_id_for('Error Code')&.to_i
       @valid = (@error_code < 4)
 
-      @error = value_for('Error Code') unless @valid?
+      @error = value_for('Error Code') unless valid?
       return unless valid?
 
       @response = Struct::NhtsaExtendedResponse.new(
